@@ -18,7 +18,7 @@ Project consists of a simple PowerShell script that walks the user through "zero
 
 <p align="center">
 <h3>Implementing Group Policy</h3>
-1. Group policy is a security tool that allows administrators to implement specific configuration on users and computers within a domain. In this part of the tutorial, we will add a policy that automatically locks the user workstation after a minute of inactivity. This helps prevent potential attackers from accessing sensitive information when users forget to lock their computer when away from their work area. 
+1. Group policy is a security tool that allows administrators to implement specific configuration on users and computers within a domain. In this part of the tutorial, we will add a policy that automatically locks the user workstation after a minute of inactivity. This helps prevent potential attackers from accessing sensitive information when users are away from their work area. 
 <br />
 <br />
 2. Connect to the domain controller(DC) through virtualbox that was previously setup.
@@ -108,7 +108,7 @@ Click Protect.
 <img src="https://i.imgur.com/o1XtAWa.png" height="65%" width="65%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-13. Next we need to install the Duo Windows Client on our Virtual Machine. We will login to our Domain Controller VM.
+13. Next, we need to install the Duo Windows Client on our Virtual Machine. We will login to our Domain Controller VM.
 <br />
 <br />
 14. Open a browser and paste this website: https://dl.duosecurity.com/duo-win-login-latest.exe
