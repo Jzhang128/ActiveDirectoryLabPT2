@@ -18,41 +18,46 @@ Project consists of a simple PowerShell script that walks the user through "zero
 
 <p align="center">
 <h3>Implementing Group Policy</h3>
-1. Connect to the domain controller(DC) through virtualbox that was previously setup.
+1. Group policy is a security tool that allows administrators to implement specific configuration on users and computers within a domain. In this part of the tutorial, we will add a policy that automatically locks the user workstation after a minute of inactivity. This helps prevent potential attackers from accessing sensitive information when users forget to lock their computer when away from their work area. 
+<br />
+<br />
+2. Connect to the domain controller(DC) through virtualbox that was previously setup.
 
 <br />
 <br />
-2. Open Server Manager and under “Tools” select “Group Policy Management”  
+3. Open Server Manager and under “Tools” select “Group Policy Management”  
 <img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-3. Expand the “Domains” folder and expand the domain name. Select the organization unit(OU) where you want to apply the group policy. In this case, right click the “Users” OU and click “Create a GPO in this domain, and Link it here…”
+4. Expand the “Domains” folder and expand the domain name. Select the organization unit(OU) where you want to apply the group policy. In this case, right click the “Users” OU and click “Create a GPO in this domain, and Link it here…”
 <img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-4. A new GPO pop up will appear and allow you to name it. We will call it “Computer Lockout”. 
+5. A new GPO pop up will appear and allow you to name it. We will call it “Computer Lockout”. 
 
 <br />
 <br />
-5. Right click on the new GPO and click edit.  
+6. Right click on the new GPO and click edit.  
 <img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-6. Under User Configuration, expand the “Administrative Template” folder and expand the control panel folder. 
+7. Under User Configuration, expand the “Administrative Template” folder and expand the control panel folder. 
 
 <br />
 <br />
-7. Select “Personalization”.  
+8. Select “Personalization”.  
 <img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-8. Right click “Enable screen saver” and press “Edit”. Select “Enable” and press “Apply” and “Ok”. Do the same with the “Password protect the screensaver” setting. 
+<br />
+<br />
+9. Right click “Enable screen saver” and press “Edit”. Select “Enable” and press “Apply” and “Ok”. Do the same with the “Password protect the screensaver” setting. 
 <img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-9. The last setting we will enable is “Screen saver timeout”. Enable that setting as well, and specify the value “60 seconds” before the screen saver is launched. Click “Apply” and “Ok”. 
+10. The last setting we will enable is “Screen saver timeout”. Enable that setting as well, and specify the value “60 seconds” before the screen saver is launched. Click “Apply” and “Ok”. 
 <img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-10. It may take a few minutes for the new policy to take effect. Alternatively, you can manually force the policy by logging into the “Client” VM we created and open the command prompt as an administrator. Then type the command “gpupdate /force”.
+11. It may take a few minutes for the new policy to take effect. Alternatively, you can manually force the policy by logging into the “Client” VM we created and open the command prompt as an administrator. Then type the command “gpupdate /force”.
 <br />
 <br />
 
