@@ -1,68 +1,60 @@
-<h1>JWipe - Disk Sanitization</h1>
+<h1>Active Directory Lab Part 2: Group Policy & Duo Implementation</h1>
 
 <h2>Description</h2>
-Project consists of a simple PowerShell script that walks the user through "zeroing out" (wiping) any drives that are connected to the system. The utility allows you to select the target disk and choose the number of passes that are performed. The PowerShell script will configure a diskpart script file based on the user's selections and then launch Diskpart to perform the disk sanitization.
+In this part of the lab, we will focus on securing our domain controller by using Duo multi-factor authenication and setting group policy to minimize risk to workstations within our domain. Group policy is a security tool that allows administrators to implement specific configuration on users and computers within a domain. In this part of the tutorial, we will add a policy that automatically locks the user workstation after a minute of inactivity. In the second portion of the tutorial, we will leverage Duo MFA to add another layer of protection to our environment with "something we have" in addition to the admin credential login("something we know").
 <br />
 
+<h2>Prerequisite </h2>
 
-<h2>Languages and Utilities Used</h2>
-
-- <b>PowerShell</b> 
-- <b>Diskpart</b>
-
-<h2>Environments Used </h2>
-
-- <b>Windows 10</b> (21H2)
-
+- <b>Lab environment Setup. See Part 1.</b>
+- <b>Create Duo account with free trial tier.</b>
 <h2>Tutorial:</h2>
 
 <p align="center">
 <h3>Implementing Group Policy</h3>
-1. Group policy is a security tool that allows administrators to implement specific configuration on users and computers within a domain. In this part of the tutorial, we will add a policy that automatically locks the user workstation after a minute of inactivity. This helps prevent potential attackers from accessing sensitive information when users are away from their work area. 
-<br />
-<br />
-2. Connect to the domain controller(DC) through virtualbox that was previously setup.
+
+1. Connect to the domain controller(DC) through virtualbox that was previously setup.
 
 <br />
 <br />
-3. Open Server Manager and under “Tools” select “Group Policy Management”  
+2. Open Server Manager and under “Tools” select “Group Policy Management”  
 <img src="https://i.imgur.com/LWNr8IC.png" height="65%" width="65%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-4. Expand the “Domains” folder and expand the domain name. Select the organization unit(OU) where you want to apply the group policy. In this case, right click the “Users” OU and click “Create a GPO in this domain, and Link it here…”
+3. Expand the “Domains” folder and expand the domain name. Select the organization unit(OU) where you want to apply the group policy. In this case, right click the “Users” OU and click “Create a GPO in this domain, and Link it here…”
 <img src="https://i.imgur.com/DnG97ZC.png" height="65%" width="65%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-5. A new GPO pop up will appear and allow you to name it. We will call it “Computer Lockout”. 
+4. A new GPO pop up will appear and allow you to name it. We will call it “Computer Lockout”. 
 
 <br />
 <br />
-6. Right click on the new GPO and click edit.  
+5. Right click on the new GPO and click edit.  
 <img src="https://i.imgur.com/nFnIoZG.png" height="65%" width="65%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-7. Under User Configuration, expand the “Administrative Template” folder and expand the control panel folder. 
+6. Under User Configuration, expand the “Administrative Template” folder and expand the control panel folder. 
 
 <br />
 <br />
-8. Select “Personalization”.  
+7. Select “Personalization”.  
 <img src="https://i.imgur.com/bSFBXLh.png" height="65%" width="65%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-9. Right click “Enable screen saver” and press “Edit”. Select “Enable” and press “Apply” and “Ok”. Do the same with the “Password protect the screensaver” setting. 
+8. Right click “Enable screen saver” and press “Edit”. Select “Enable” and press “Apply” and “Ok”. Do the same with the “Password protect the screensaver” setting. 
 <img src="https://i.imgur.com/ZwxjTh6.png" height="65%" width="65%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-10. The last setting we will enable is “Screen saver timeout”. Enable that setting as well, and specify the value “60 seconds” before the screen saver is launched. Click “Apply” and “Ok”. 
+9. The last setting we will enable is “Screen saver timeout”. Enable that setting as well, and specify the value “60 seconds” before the screen saver is launched. Click “Apply” and “Ok”. 
 <img src="https://i.imgur.com/ZvnoKwq.png" height="65%" width="65%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-11. It may take a few minutes for the new policy to take effect. Alternatively, you can manually force the policy by logging into the “Client” VM we created and open the command prompt as an administrator. Then type the command “gpupdate /force”.
+10. It may take a few minutes for the new policy to take effect. Alternatively, you can manually force the policy by logging into the “Client” VM we created and open the command prompt as an administrator. Then type the command “gpupdate /force”.
 <br />
 <br />
 
 <h3>Duo 2-Factor Authentication For Window Server/VM</h3>
-1. In this section, we will use Duo to secure our virtual machines. We’re going to leverage Duo’s free tier of MFA products, Duo MFA, to add another layer of protection to our environment. Browse to https://duo.com/ and click on the  “Free Trail” button. Run through the requested information to start your free trial.
+1. Browse to https://duo.com/ and click on the  “Free Trial” button. Run through the requested information to start your free trial.
 <br />
 <br />
 2. After setting up your free Duo trial, We need to add users to our Duo console. To do this with Duo free tier, find the “Groups” tab on the left side and click “Add Group”.
