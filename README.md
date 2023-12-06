@@ -6,7 +6,7 @@ In this part of the lab, we will focus on securing our domain controller by usin
 
 <h2>Prerequisite </h2>
 
-- <b>Lab environment Setup. See Part 1.</b>
+- <b>Lab environment setup. See part 1: (https://github.com/Jzhang128/ActiveDirectoryLabPT1)</b>
 - <b>Create Duo account with free trial tier.</b>
 <h2>Tutorial:</h2>
 
