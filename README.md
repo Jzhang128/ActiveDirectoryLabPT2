@@ -1,7 +1,7 @@
 <h1>Active Directory Lab Part 2: Group Policy & Duo Implementation</h1>
 
 <h2>Description</h2>
-In this part of the lab, we will focus on securing our domain controller by using Duo multi-factor authenication and setting group policy to minimize risk to workstations within our domain. Group policy is a security tool that allows administrators to implement specific configuration on users and computers within a domain. In this part of the tutorial, we will add a policy that automatically locks the user workstation after a minute of inactivity. In the second portion of the tutorial, we will leverage Duo MFA to add another layer of protection to our environment with "something we have" in addition to the admin credential login("something we know").
+In this part of the lab, we will focus on securing our domain controller by using Duo multi-factor authenication and setting group policy to minimize risk to workstations within our domain. Group policy is a security tool that allows administrators to implement specific configuration on users and computers within a domain. In this part of the tutorial, we will add a policy that automatically locks the user workstation after a minute of inactivity. In the second portion of the tutorial, we will leverage Duo MFA to add another layer of protection to our environment with "something we have" in addition to the admin credential("something we know").
 <br />
 
 <h2>Prerequisite </h2>
